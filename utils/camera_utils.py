@@ -9,13 +9,13 @@
 # For inquiries contact  george.drettakis@inria.fr
 #
 
-from scene.cameras import Camera
+from SpikingGS.scene.cameras import Camera
 import numpy as np
 import torch
 import torchvision
 from torchvision.transforms.functional import InterpolationMode
-from utils.general_utils import PILtoTorch
-from utils.graphics_utils import fov2focal
+from SpikingGS.utils.general_utils import PILtoTorch
+from SpikingGS.utils.graphics_utils import fov2focal
 
 WARNED = False
 

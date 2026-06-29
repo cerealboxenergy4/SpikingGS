@@ -12,11 +12,11 @@
 import os
 import random
 import json
-from utils.system_utils import searchForMaxIteration
-from scene.dataset_readers import sceneLoadTypeCallbacks
-from scene.gaussian_model import GaussianModel, BilateralFilter
-from arguments import ModelParams
-from utils.camera_utils import cameraList_from_camInfos, camera_to_JSON
+from SpikingGS.utils.system_utils import searchForMaxIteration
+from SpikingGS.scene.dataset_readers import sceneLoadTypeCallbacks
+from SpikingGS.scene.gaussian_model import GaussianModel, BilateralFilter
+from SpikingGS.arguments import ModelParams
+from SpikingGS.utils.camera_utils import cameraList_from_camInfos, camera_to_JSON
 import torch
 
 class Scene:

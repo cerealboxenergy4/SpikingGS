@@ -10,27 +10,28 @@
 #
 
 import os
+from SpikingGS.gaussian_renderer import render, render_through
 import torch
 from torchmetrics.image import PeakSignalNoiseRatio
 from random import randint, seed
-from utils.loss_utils import l1_loss, ssim
-from gaussian_renderer import render, network_gui, render_through
+from SpikingGS.utils.loss_utils import l1_loss, ssim
+from SpikingGS.gaussian_renderer import network_gui
 import sys
-from scene import Scene, GaussianModel, BilateralFilter
-from utils.general_utils import safe_state
+from SpikingGS.scene import Scene, GaussianModel, BilateralFilter
+from SpikingGS.utils.general_utils import safe_state
 import uuid
 import torch.nn.functional as F
 import wandb
 from tqdm import tqdm
 from torch import nn
-from lpipsPyTorch import lpips
-from utils.image_utils import psnr
+from SpikingGS.lpipsPyTorch import lpips
+from SpikingGS.utils.image_utils import psnr
 from argparse import ArgumentParser, Namespace
-from arguments import ModelParams, PipelineParams, OptimizationParams
+from SpikingGS.arguments import ModelParams, PipelineParams, OptimizationParams
 
 from torch.utils.tensorboard import SummaryWriter
 TENSORBOARD_FOUND = True
-from utils.depth_utils import depths_to_points, depth_to_normal
+from SpikingGS.utils.depth_utils import depths_to_points, depth_to_normal
 import kornia
 
 def culling(xyz, cams, expansion=2):

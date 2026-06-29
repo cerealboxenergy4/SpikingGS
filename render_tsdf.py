@@ -13,13 +13,16 @@ import numpy as np
 import open3d as o3d
 import os
 
-from scene import Scene
-from gaussian_renderer import render, render_through, render_skip_filter
+if not hasattr(o3d, "integration") and hasattr(o3d, "pipelines"):
+    o3d.integration = o3d.pipelines.integration
+
+from SpikingGS.scene import Scene
+from SpikingGS.gaussian_renderer import render, render_through, render_skip_filter
 import torchvision
-from utils.general_utils import safe_state
+from SpikingGS.utils.general_utils import safe_state
 from argparse import ArgumentParser
-from arguments import ModelParams, PipelineParams, get_combined_args
-from gaussian_renderer import GaussianModel
+from SpikingGS.arguments import ModelParams, PipelineParams, get_combined_args
+from SpikingGS.gaussian_renderer import GaussianModel
 import numpy as np
 import math
 from os import makedirs
@@ -201,4 +204,3 @@ if __name__ == "__main__":
     safe_state(args.quiet)
 
     render_sets(model.extract(args), args.iteration, pipeline.extract(args), args.skip_train, args.skip_test)
-

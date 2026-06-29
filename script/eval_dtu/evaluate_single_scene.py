@@ -14,7 +14,7 @@ import subprocess
 from os import makedirs, path
 
 import sys
-import render_utils as rend_util
+import SpikingGS.script.eval_dtu.render_utils as rend_util
 from tqdm import tqdm
 
 def load_dtu_camera(DTU):

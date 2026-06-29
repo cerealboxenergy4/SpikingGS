@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <vector>
+#include <cstdint> // P1_5_BUILD_COMPAT
 #include "rasterizer.h"
 #include <cuda_runtime_api.h>
 

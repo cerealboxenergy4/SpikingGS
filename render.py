@@ -10,16 +10,16 @@
 #
 
 import torch
-from scene import Scene
+from SpikingGS.scene import Scene
 import os
 from tqdm import tqdm
 from os import makedirs
-from gaussian_renderer import render, render_through
+from SpikingGS.gaussian_renderer import render, render_through
 import torchvision
-from utils.general_utils import safe_state
+from SpikingGS.utils.general_utils import safe_state
 from argparse import ArgumentParser
-from arguments import ModelParams, PipelineParams, get_combined_args
-from gaussian_renderer import GaussianModel
+from SpikingGS.arguments import ModelParams, PipelineParams, get_combined_args
+from SpikingGS.gaussian_renderer import GaussianModel
 
 def render_set(model_path, name, iteration, views, gaussians, pipeline, background):
     render_path = os.path.join(model_path, name, "ours_{}".format(iteration), "renders")

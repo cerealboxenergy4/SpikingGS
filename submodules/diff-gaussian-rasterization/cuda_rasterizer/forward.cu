@@ -348,6 +348,7 @@ renderCUDA(
 	float median_depth = {0};
 	float median_weight = {0};
 	float median_contributor = {-1};
+	float alpha_m2 = {0}; // P1_5_METRIC_HOOK
 	float myray[100] = {0};
 	int record_index = 0;
 
@@ -419,6 +420,8 @@ renderCUDA(
 				continue;
 			}
 			
+			float layer_weight = alpha * T; // P1_5_METRIC_HOOK
+			alpha_m2 += layer_weight * layer_weight;
 			D += depth * alpha * T;
 			if(D0 == 0.) D0 = depth;
 			for (int ch=0; ch<3; ch++) N[ch] += normal[ch] * alpha * T;
@@ -467,6 +470,7 @@ renderCUDA(
 		for (int ch=0; ch<3; ch++) out_others[pix_id + (NORMAL_OFFSET+ch) * H * W] = N[ch];
 		out_others[pix_id + MIDDEPTH_OFFSET * H * W] = median_depth;
 		out_others[pix_id + DISTORTION_OFFSET * H * W] = distortion;
+		out_others[pix_id + M2_LAYER_OFFSET * H * W] = alpha_m2; // P1_5_METRIC_HOOK
 		for (int i = 0; i < 100; i++) {
 			ray[pix_id + (RAY_OFFSET+i) * H * W] = myray[i];
 		}

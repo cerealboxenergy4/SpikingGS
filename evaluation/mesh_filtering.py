@@ -8,7 +8,7 @@
 import sys
 import torch
 from tqdm import tqdm
-from evaluation.utils_3D import *
+from SpikingGS.evaluation.utils_3D import *
 from torch.nn import functional as F
 from pytorch3d.structures import Meshes
 from pytorch3d.renderer.mesh import rasterizer

@@ -12,10 +12,10 @@
 import torch
 import math
 from diff_gaussian_rasterization import GaussianRasterizationSettings, GaussianRasterizer
-from scene.gaussian_model import GaussianModel
-from utils.sh_utils import eval_sh
-from arguments import PipelineParams, ArgumentParser
-from utils.depth_utils import depth_to_normal
+from SpikingGS.scene.gaussian_model import GaussianModel
+from SpikingGS.utils.sh_utils import eval_sh
+from SpikingGS.arguments import PipelineParams, ArgumentParser
+from SpikingGS.utils.depth_utils import depth_to_normal
 import cv2
 
 
@@ -115,6 +115,8 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
             "radii": radii}
     # additional regularizations
     render_alpha = allmap[1:2]
+    render_alpha_m2 = allmap[7:8] # P1_5_METRIC_HOOK
+    render_neff = (render_alpha * render_alpha) / render_alpha_m2.clamp_min(1e-12)
     # get normal map
     render_normal = allmap[2:5]
     render_normal = (render_normal.permute(1,2,0) @ (viewpoint_camera.world_view_transform[:3,:3].T)).permute(2,0,1)
@@ -155,6 +157,8 @@ def render(viewpoint_camera, pc : GaussianModel, pipe, bg_color : torch.Tensor, 
     rets.update({
             'depth': depth,
             'rend_alpha': render_alpha,
+            'rend_alpha_m2': render_alpha_m2,
+            'rend_neff': render_neff,
             'rend_normal': render_normal,
             'rend_dist': render_dist,
             'surf_depth': surf_depth,

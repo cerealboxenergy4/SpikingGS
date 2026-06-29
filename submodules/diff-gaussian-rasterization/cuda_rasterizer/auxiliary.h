@@ -28,6 +28,7 @@
 #define MIDDEPTH_OFFSET 5
 #define DISTORTION_OFFSET 6
 #define MEDIAN_WEIGHT_OFFSET 7
+#define M2_LAYER_OFFSET 7 // P1_5_METRIC_HOOK: eval-only opacity-weight second moment.
 #define RAY_OFFSET 0
 
 // distortion helper macros

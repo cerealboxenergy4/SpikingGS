@@ -12,7 +12,7 @@
 import torch
 from torch import nn
 import numpy as np
-from utils.graphics_utils import getWorld2View2, getProjectionMatrix
+from SpikingGS.utils.graphics_utils import getWorld2View2, getProjectionMatrix
 
 def getProjectionMatrixCenterShift(znear, zfar, cx, cy, fl_x, fl_y, w, h):
     top = cy / fl_y * znear

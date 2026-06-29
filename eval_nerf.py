@@ -5,8 +5,8 @@ import json
 from pathlib import Path
 import torch
 import sys
-from evaluation import utils_3D
-from evaluation.mesh_filtering import *
+from SpikingGS.evaluation import utils_3D
+from SpikingGS.evaluation.mesh_filtering import *
 from scipy.spatial import KDTree
 import imageio.v2 as imageio
 from skimage import morphology as morph
